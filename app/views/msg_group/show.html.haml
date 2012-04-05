@@ -1,0 +1,14 @@
+.span9
+  - @messages.each do |message|
+    - if message.flags == 2
+      .bubbledLeft
+        = message.text
+    - else
+      .bubbledRight
+        = message.text
+    %br
+    .date
+      %small
+        = Time.at(message.date).strftime("%d.%m.%Y %H:%M")
+
+  = paginate @messages

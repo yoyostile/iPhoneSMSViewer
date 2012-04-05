@@ -1,13 +1,12 @@
 class Message < ActiveRecord::Base
-  set_table_name "message"
+  self.table_name = "message"
   set_primary_key "ROWID"
+
+  paginates_per 50
 
   belongs_to :msg_group, :foreign_key => :group_id
 
-  has_one :madrid_attachment, :primary_key => :get_attachment, :foreign_key => :attachment_guid
-
-  def get_attachment
-    puts "bla"
+  def get_attachment_string
     if self.madrid_attachmentInfo.nil?
       return nil
     else
@@ -16,5 +15,15 @@ class Message < ActiveRecord::Base
       str = str[index+3..str.length-3]
       return str
     end
+  end
+
+  def get_attachment
+    unless get_attachment_string.nil?
+      attachment = MadridAttachment.find_by_attachment_guid(get_attachment_string)
+    end
+  end
+
+  def get_attachment_path
+    get_attachment.filename["/var/mobile/Library/SMS/".length..get_attachment.filename.length]
   end
 end

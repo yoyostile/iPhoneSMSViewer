@@ -1,5 +1,5 @@
 class MadridChat < ActiveRecord::Base
-  set_table_name "madrid_chat"
+  self.table_name = "madrid_chat"
   set_primary_key "ROWID"
 
   has_many :message, :primary_key => :chat_identifier, :foreign_key => :madrid_handle

@@ -1,0 +1,2 @@
+module MadridChatHelper
+end

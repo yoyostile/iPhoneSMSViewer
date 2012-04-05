@@ -1,0 +1,24 @@
+.span9
+  - @messages.each do |message|
+    - if message.get_attachment.nil?
+      - unless message.madrid_flags == 36869 || message.madrid_flags == 45061
+        %small{:style => "float: left"}
+          = message.madrid_handle
+        .bubbledLeft
+          = message.text
+      - else
+        .bubbledRight
+          = message.text
+    - else
+      - unless message.madrid_flags == 36869 || message.madrid_flags == 45061
+        .imagedLeft
+          = (message.get_attachment.nil?) ? "" : image_tag(message.get_attachment_path[0..message.get_attachment_path.length-6]+"-preview-left.jpg")
+      - else
+        .imagedRight
+          = (message.get_attachment.nil?) ? "" : link_to(image_tag(message.get_attachment_path[0..message.get_attachment_path.length-5]+"-preview-right.jpg"), asset_path(message.get_attachment_path))
+    %br
+    .date
+      %small
+        = Time.at(message.date).strftime("%d.%m.%Y %H:%M")
+
+  = paginate @messages

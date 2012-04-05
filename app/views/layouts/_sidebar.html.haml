@@ -1,0 +1,12 @@
+%div{:class => "well sidebar-nav"}
+  %ul{:class => "nav nav-list"}
+    %li{:class => "nav-header"}
+      SMS
+    - @sms_groups.each do |sms_group|
+      %li
+        = link_to sms_group.message.find(sms_group.newest_message).address, sms_group
+    %li{:class => "nav-header"}
+      iMessage
+    - @imessage_groups.each do |imessage_group|
+      %li
+        = link_to imessage_group.chat_identifier, imessage_group

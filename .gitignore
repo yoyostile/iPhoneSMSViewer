@@ -1,3 +1,4 @@
+app/assets/images/Attachments/*
 .bundle
 db/*.sqlite3
 db/sms.db
