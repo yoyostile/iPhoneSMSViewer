@@ -2,6 +2,7 @@
 db/*.sqlite3
 db/sms.db
 db/*.db
+db/sms.db*
 log/*.log
 tmp/
 .sass-cache/

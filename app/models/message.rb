@@ -3,8 +3,7 @@ class Message < ActiveRecord::Base
   set_primary_key "ROWID"
 
   belongs_to :msg_group, :foreign_key => :group_id
-  belongs_to :madrid_chat
-  / aus irgendeinem seltsamen grund funktioniert hier :get_attachment nicht. /
+
   has_one :madrid_attachment, :primary_key => :get_attachment, :foreign_key => :attachment_guid
 
   def get_attachment
